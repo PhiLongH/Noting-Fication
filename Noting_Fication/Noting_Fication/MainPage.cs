@@ -41,7 +41,22 @@ namespace Noting_Fication
 
         }
 
-        private void btnTasks_Click(object sender, EventArgs e)
+        private void btnTasks_Click(object sender, EventArgs e) //goals
+        {
+
+        }
+
+        private void btnTags_Click(object sender, EventArgs e) //categories
+        {
+
+        }
+
+        private void btnBin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnListNote_Click(object sender, EventArgs e)
         {
 
         }
