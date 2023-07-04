@@ -98,6 +98,7 @@
             lblRegister.TabIndex = 7;
             lblRegister.TabStop = true;
             lblRegister.Text = "Sign up for free";
+            lblRegister.LinkClicked += lblRegister_LinkClicked;
             // 
             // Login
             // 

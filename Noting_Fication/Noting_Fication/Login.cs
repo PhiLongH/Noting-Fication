@@ -63,5 +63,12 @@ namespace Noting_Fication
                 MessageBox.Show("An error occurred while authenticating the user: " + ex.Message);
             }
         }
+
+        private void lblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Register rs = new Register();
+            rs.Show();
+            lblRegister.LinkVisited = true;
+        }
     }
 }
