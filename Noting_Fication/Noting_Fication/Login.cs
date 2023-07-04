@@ -22,7 +22,7 @@ namespace Noting_Fication
         {
 
         }
-        String ConnectionString = "server =LAPTOP-P1F3R3OG\\SQLEXPRESS; database= NotingFication; uid=sa;pwd=12345; TrustServerCertificate=True";
+        String ConnectionString = "server =(local); database= NotingFication; uid=sa;pwd=12345; TrustServerCertificate=True";
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
