@@ -67,13 +67,41 @@ namespace Noting_Fication
             string confirmPassword = txtConfirmPassword.Text;
             string email = txtRegisterEmail.Text;
 
-            // Check if user has entered all the field with the *
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmPassword))
+         //1 Valid username
+            if (string.IsNullOrWhiteSpace(username))
             {
-                MessageBox.Show("Please fill in all required fields.", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please fill in your username", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtRegisterName.BorderStyle = BorderStyle.FixedSingle;
                 return;
             }
+            else
+            {
+                txtRegisterName.BorderStyle = BorderStyle.None;
+            }
 
+        //2 Valid Password
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                MessageBox.Show("Please fill in your username", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtRegisterPassword.BorderStyle = BorderStyle.FixedSingle;
+                return;
+            }
+            else
+            {
+                txtRegisterPassword.BorderStyle = BorderStyle.None;
+            }
+
+        //3 Valid confirmPassword
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                MessageBox.Show("Please fill in your username", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtConfirmPassword.BorderStyle = BorderStyle.FixedSingle;
+                return;
+            }
+            else
+            {
+                txtConfirmPassword.BorderStyle = BorderStyle.None;
+            }
             // Check if password and confirm password match
             if (password != confirmPassword)
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             txtUsername = new TextBox();
@@ -35,6 +36,8 @@
             btnLogin = new Button();
             label3 = new Label();
             lblRegister = new LinkLabel();
+            errorProvider = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -100,6 +103,10 @@
             lblRegister.Text = "Sign up for free";
             lblRegister.LinkClicked += lblRegister_LinkClicked;
             // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -114,6 +121,7 @@
             Controls.Add(label1);
             Name = "Login";
             Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -127,5 +135,6 @@
         private Button btnLogin;
         private Label label3;
         private LinkLabel lblRegister;
+        private ErrorProvider errorProvider;
     }
 }
