@@ -29,55 +29,42 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            label1 = new Label();
-            label2 = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             txtUsername = new TextBox();
             txtPassword = new TextBox();
             btnLogin = new Button();
             label3 = new Label();
             lblRegister = new LinkLabel();
             errorProvider = new ErrorProvider(components);
+            richTextBox1 = new RichTextBox();
+            richTextBox2 = new RichTextBox();
+            pictureBox1 = new PictureBox();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(108, 134);
-            label1.Name = "label1";
-            label1.Size = new Size(113, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Enter password:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(108, 88);
-            label2.Name = "label2";
-            label2.Size = new Size(114, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Enter username:";
-            label2.Click += label2_Click;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(224, 88);
+            txtUsername.Location = new Point(373, 256);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(125, 27);
+            txtUsername.Size = new Size(373, 27);
             txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(224, 134);
+            txtPassword.Location = new Point(373, 296);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(125, 27);
+            txtPassword.Size = new Size(373, 27);
             txtPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(398, 88);
+            btnLogin.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLogin.ForeColor = SystemColors.ActiveCaption;
+            btnLogin.Location = new Point(340, 337);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(94, 29);
+            btnLogin.Size = new Size(265, 79);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
@@ -86,7 +73,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(108, 184);
+            label3.Location = new Point(329, 419);
             label3.Name = "label3";
             label3.Size = new Size(167, 20);
             label3.TabIndex = 5;
@@ -95,7 +82,7 @@
             // lblRegister
             // 
             lblRegister.AutoSize = true;
-            lblRegister.Location = new Point(272, 184);
+            lblRegister.Location = new Point(493, 419);
             lblRegister.Name = "lblRegister";
             lblRegister.Size = new Size(112, 20);
             lblRegister.TabIndex = 7;
@@ -107,34 +94,85 @@
             // 
             errorProvider.ContainerControl = this;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.AcceptsTab = true;
+            richTextBox1.BackColor = SystemColors.HighlightText;
+            richTextBox1.BorderStyle = BorderStyle.None;
+            richTextBox1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            richTextBox1.Location = new Point(173, 247);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
+            richTextBox1.Size = new Size(194, 44);
+            richTextBox1.TabIndex = 9;
+            richTextBox1.Text = "Enter username:";
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.AcceptsTab = true;
+            richTextBox2.BackColor = SystemColors.HighlightText;
+            richTextBox2.BorderStyle = BorderStyle.None;
+            richTextBox2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            richTextBox2.Location = new Point(173, 287);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.ReadOnly = true;
+            richTextBox2.ScrollBars = RichTextBoxScrollBars.None;
+            richTextBox2.Size = new Size(194, 44);
+            richTextBox2.TabIndex = 10;
+            richTextBox2.Text = "Enter password:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(373, 83);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(198, 158);
+            pictureBox1.TabIndex = 11;
+            pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.HighlightText;
+            panel1.Location = new Point(159, 32);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(631, 422);
+            panel1.TabIndex = 12;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1021, 560);
+            Controls.Add(pictureBox1);
+            Controls.Add(richTextBox2);
+            Controls.Add(richTextBox1);
             Controls.Add(lblRegister);
             Controls.Add(label3);
             Controls.Add(btnLogin);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(panel1);
             Name = "Login";
             Text = "Login";
+            Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
-        private Label label2;
         private TextBox txtUsername;
         private TextBox txtPassword;
         private Button btnLogin;
         private Label label3;
         private LinkLabel lblRegister;
         private ErrorProvider errorProvider;
+        private RichTextBox richTextBox2;
+        private RichTextBox richTextBox1;
+        private PictureBox pictureBox1;
+        private Panel panel1;
     }
 }

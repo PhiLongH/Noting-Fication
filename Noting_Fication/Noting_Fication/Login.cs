@@ -9,31 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace Noting_Fication
 {
     public partial class Login : Form
     {
 
-        public enum DWMWINDOWATTRIBUTE
-        {
-            DWMWA_WINDOW_CORNER_PREFERENCE = 33
-            //Tells the function what attribute to set.
-        }
-
-
-
 
         public Login()
         {
             InitializeComponent();
-            // Set the BorderColor property of the text boxes
-
-
-
-            // Add the text boxes to the form's controls collection
-            this.Controls.Add(txtUsername);
-            this.Controls.Add(txtPassword);
+            SetColors();
+        }
+        private void SetColors()
+        {
+            this.BackColor = Color.White; // Set the background color of the form
+            btnLogin.BackColor = AppColors.Green; // Set the background color of a button
+            btnLogin.ForeColor = Color.White; // Set the text color of a button
+                                              // Set other colors for your form elements as needed
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -111,6 +105,21 @@ namespace Noting_Fication
             Register rs = new Register();
             rs.Show();
             lblRegister.LinkVisited = true;
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            // Create a rounded rectangle region
+            int cornerRadius = 10;
+            GraphicsPath roundedRect = new GraphicsPath();
+            roundedRect.AddArc(0, 0, cornerRadius * 2, cornerRadius * 2, 180, 90);
+            roundedRect.AddArc(panel1.Width - cornerRadius * 2, 0, cornerRadius * 2, cornerRadius * 2, 270, 90);
+            roundedRect.AddArc(panel1.Width - cornerRadius * 2, panel1.Height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 0, 90);
+            roundedRect.AddArc(0, panel1.Height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 90, 90);
+            roundedRect.CloseFigure();
+
+            // Set the rounded rectangle region to the Panel control
+            panel1.Region = new Region(roundedRect);
         }
     }
 }
