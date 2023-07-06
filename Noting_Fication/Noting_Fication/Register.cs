@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,6 +18,15 @@ namespace Noting_Fication
         public Register()
         {
             InitializeComponent();
+            SetColors();
+        }
+
+        private void SetColors()
+        {
+            this.BackColor = Color.White; // Set the background color of the form
+            btnRegister.BackColor = AppColors.Green; // Set the background color of a button
+            btnRegister.ForeColor = Color.White; // Set the text color of a button
+                                                 // Set other colors for your form elements as needed
         }
         String ConnectionString = "server =LAPTOP-P1F3R3OG\\SQLEXPRESS; database= NotingFication; uid=sa;pwd=12345; TrustServerCertificate=True";
 
@@ -67,7 +77,7 @@ namespace Noting_Fication
             string confirmPassword = txtConfirmPassword.Text;
             string email = txtRegisterEmail.Text;
 
-         //1 Valid username
+            //1 Valid username
             if (string.IsNullOrWhiteSpace(username))
             {
                 MessageBox.Show("Please fill in your username", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -79,7 +89,7 @@ namespace Noting_Fication
                 txtRegisterName.BorderStyle = BorderStyle.None;
             }
 
-        //2 Valid Password
+            //2 Valid Password
             if (string.IsNullOrWhiteSpace(username))
             {
                 MessageBox.Show("Please fill in your username", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -91,7 +101,7 @@ namespace Noting_Fication
                 txtRegisterPassword.BorderStyle = BorderStyle.None;
             }
 
-        //3 Valid confirmPassword
+            //3 Valid confirmPassword
             if (string.IsNullOrWhiteSpace(username))
             {
                 MessageBox.Show("Please fill in your username", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -135,6 +145,8 @@ namespace Noting_Fication
                     {
                         MessageBox.Show("Registration successful.", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
+                        Login login = new Login();
+                        login.Show();
                     }
                     else
                     {
@@ -146,6 +158,20 @@ namespace Noting_Fication
             {
                 MessageBox.Show("An error occurred during registration: " + ex.Message, "Registration", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Register_Load(object sender, EventArgs e)
+        {
+            int cornerRadius = 10;
+            GraphicsPath roundedRect = new GraphicsPath();
+            roundedRect.AddArc(0, 0, cornerRadius * 2, cornerRadius * 2, 180, 90);
+            roundedRect.AddArc(panel1.Width - cornerRadius * 2, 0, cornerRadius * 2, cornerRadius * 2, 270, 90);
+            roundedRect.AddArc(panel1.Width - cornerRadius * 2, panel1.Height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 0, 90);
+            roundedRect.AddArc(0, panel1.Height - cornerRadius * 2, cornerRadius * 2, cornerRadius * 2, 90, 90);
+            roundedRect.CloseFigure();
+
+            // Set the rounded rectangle region to the Panel control
+            panel1.Region = new Region(roundedRect);
         }
     }
 }

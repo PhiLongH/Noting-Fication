@@ -102,6 +102,7 @@ namespace Noting_Fication
 
         private void lblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            this.Hide();
             Register rs = new Register();
             rs.Show();
             lblRegister.LinkVisited = true;
