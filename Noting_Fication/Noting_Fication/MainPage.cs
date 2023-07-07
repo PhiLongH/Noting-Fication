@@ -60,5 +60,10 @@ namespace Noting_Fication
         {
 
         }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

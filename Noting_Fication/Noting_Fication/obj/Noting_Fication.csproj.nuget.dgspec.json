@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GPT\\PRNprj\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj": {}
+    "D:\\GitHub\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj": {}
   },
   "projects": {
-    "D:\\GPT\\PRNprj\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj": {
+    "D:\\GitHub\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GPT\\PRNprj\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj",
+        "projectUniqueName": "D:\\GitHub\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj",
         "projectName": "Noting_Fication",
-        "projectPath": "D:\\GPT\\PRNprj\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\GPT\\PRNprj\\Noting-Fication\\Noting_Fication\\Noting_Fication\\obj\\",
+        "projectPath": "D:\\GitHub\\Noting-Fication\\Noting_Fication\\Noting_Fication\\Noting_Fication.csproj",
+        "packagesPath": "C:\\Users\\maing\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\Noting-Fication\\Noting_Fication\\Noting_Fication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\maing\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
