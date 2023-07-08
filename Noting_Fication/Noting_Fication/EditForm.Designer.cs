@@ -32,6 +32,8 @@
             btBold = new Button();
             btNormal = new Button();
             btItalic = new Button();
+            numericUpDown1 = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // rtxbContent
@@ -73,11 +75,22 @@
             btItalic.UseVisualStyleBackColor = true;
             btItalic.Click += btItalic_Click;
             // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(140, 14);
+            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(48, 27);
+            numericUpDown1.TabIndex = 5;
+            numericUpDown1.Value = new decimal(new int[] { 12, 0, 0, 0 });
+            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            // 
             // EditForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(numericUpDown1);
             Controls.Add(btItalic);
             Controls.Add(btNormal);
             Controls.Add(btBold);
@@ -85,6 +98,7 @@
             Name = "EditForm";
             Text = "EditForm";
             Load += EditForm_Load;
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -94,5 +108,6 @@
         private Button btBold;
         private Button btNormal;
         private Button btItalic;
+        private NumericUpDown numericUpDown1;
     }
 }

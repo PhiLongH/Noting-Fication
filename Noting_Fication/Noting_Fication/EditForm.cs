@@ -15,7 +15,13 @@ namespace Noting_Fication
         public EditForm()
         {
             InitializeComponent();
+
+            Loadfirst();
         }
+        void Loadfirst()
+         { 
+             Font newFont = new Font("Times New Romance", (int)numericUpDown1.Value, FontStyle.Regular);
+         }
 
         private void EditForm_Load(object sender, EventArgs e)
         {
@@ -36,13 +42,16 @@ namespace Noting_Fication
         {
             Normaltext(rtxbContent);
         }
-        
+
         private void btItalic_Click(object sender, EventArgs e)
         {
             Italictext(rtxbContent);
         }
-        
 
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            ChangedSize(rtxbContent, (int)numericUpDown1.Value);
+        }
 
         void Boldtext(RichTextBox rtxb)
         {
@@ -58,6 +67,13 @@ namespace Noting_Fication
         {
             Font newFont = new Font(rtxb.SelectionFont.FontFamily.Name, rtxb.SelectionFont.Size, FontStyle.Regular);
             rtxb.SelectionFont = newFont;
+        }
+
+        void ChangedSize(RichTextBox rtxb, int size)
+        {
+            Font newFont = new Font(rtxb.SelectionFont.FontFamily.Name, size, rtxb.SelectionFont.Style);
+            rtxb.SelectionFont = newFont;
+
         }
     }
 }
