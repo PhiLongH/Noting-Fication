@@ -47,7 +47,7 @@ namespace Noting_Fication
         {
             Italictext(rtxbContent);
         }
-
+    
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             ChangedSize(rtxbContent, (int)numericUpDown1.Value);
