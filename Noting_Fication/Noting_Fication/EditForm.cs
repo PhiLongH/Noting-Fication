@@ -19,9 +19,9 @@ namespace Noting_Fication
             Loadfirst();
         }
         void Loadfirst()
-         { 
-             Font newFont = new Font("Times New Romance", (int)numericUpDown1.Value, FontStyle.Regular);
-         }
+        {
+            Font newFont = new Font("Times New Romance", (int)numericUpDown1.Value, FontStyle.Regular);
+        }
 
         private void EditForm_Load(object sender, EventArgs e)
         {
@@ -47,7 +47,7 @@ namespace Noting_Fication
         {
             Italictext(rtxbContent);
         }
-    
+
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             ChangedSize(rtxbContent, (int)numericUpDown1.Value);
@@ -69,11 +69,27 @@ namespace Noting_Fication
             rtxb.SelectionFont = newFont;
         }
 
+        void Underlinetext(RichTextBox rtxb)
+        {
+            Font newFont = new Font(rtxb.SelectionFont.FontFamily.Name, rtxb.SelectionFont.Size, FontStyle.Underline);
+            rtxb.SelectionFont = newFont;
+        }
         void ChangedSize(RichTextBox rtxb, int size)
         {
             Font newFont = new Font(rtxb.SelectionFont.FontFamily.Name, size, rtxb.SelectionFont.Style);
             rtxb.SelectionFont = newFont;
 
+        }
+
+        private void btUnderline_Click(object sender, EventArgs e)
+        {
+            Underlinetext(rtxbContent);
+        }
+
+        private void cbFont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string choose = this.cbFont.SelectedItem.ToString();
+            this.rtxbContent.Font = new Font(choose, this.rtxbContent.Font.Size, this.rtxbContent.Font.Style);
         }
     }
 }

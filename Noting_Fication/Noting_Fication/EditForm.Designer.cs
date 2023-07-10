@@ -33,6 +33,8 @@
             btNormal = new Button();
             btItalic = new Button();
             numericUpDown1 = new NumericUpDown();
+            btUnderline = new Button();
+            cbFont = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -47,7 +49,7 @@
             // 
             // btBold
             // 
-            btBold.Location = new Point(12, 12);
+            btBold.Location = new Point(289, 13);
             btBold.Name = "btBold";
             btBold.Size = new Size(33, 29);
             btBold.TabIndex = 1;
@@ -57,7 +59,7 @@
             // 
             // btNormal
             // 
-            btNormal.Location = new Point(90, 12);
+            btNormal.Location = new Point(406, 13);
             btNormal.Name = "btNormal";
             btNormal.Size = new Size(33, 29);
             btNormal.TabIndex = 3;
@@ -67,7 +69,7 @@
             // 
             // btItalic
             // 
-            btItalic.Location = new Point(51, 12);
+            btItalic.Location = new Point(328, 13);
             btItalic.Name = "btItalic";
             btItalic.Size = new Size(33, 29);
             btItalic.TabIndex = 4;
@@ -77,7 +79,7 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(140, 14);
+            numericUpDown1.Location = new Point(196, 13);
             numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(48, 27);
@@ -85,11 +87,37 @@
             numericUpDown1.Value = new decimal(new int[] { 12, 0, 0, 0 });
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
+            // btUnderline
+            // 
+            btUnderline.Location = new Point(367, 13);
+            btUnderline.Name = "btUnderline";
+            btUnderline.Size = new Size(33, 29);
+            btUnderline.TabIndex = 6;
+            btUnderline.Text = "U";
+            btUnderline.UseVisualStyleBackColor = true;
+            btUnderline.Click += btUnderline_Click;
+            // 
+            // cbFont
+            // 
+            cbFont.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbFont.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbFont.FormattingEnabled = true;
+            cbFont.Items.AddRange(new object[] { "Arial", "Avenir", "Baskerville", "Bodoni", "Book Antiqua", "Bookman Old Style", "Brush Script MT", "Calibri", "Calibri", "Cambria", "Candara", "Century Gothic", "Century Schoolbook", "Clarendon", "Comic Sans MS", "Consolas", "Copperplate Gothic", "Courier", "Courier New", "Didot", "Edwardian Script ITC", "Engravers MT", "Eurostile", "Felix Titling", "Forte", "Franklin Gothic", "Franklin Gothic Medium", "Frutiger", "Futura", "Garamond", "Georgia", "Gill Sans", "Gill Sans", "Gotham", "Gotham", "Goudy Stout", "Helvetica", "Impact", "Impact", "ITC Avant Garde Gothic", "Lucida Console", "Lucida Handwriting", "Lucida Handwriting", "Magneto", "Marlett", "Microsoft Sans Serif", "Monotype Corsiva", "Myriad", "Myriad Pro", "Neutraface", "Optima", "Palatino Linotype", "Proxima Nova", "Rockwell", "Segoe Print", "Segoe Script", "Segoe UI", "Symbol", "Tahoma", "Times New Roman", "Times New Roman", "Trade Gothic", "Trebuchet MS", "Univers", "Verdana", "Verdana", "Webdings", "Wingdings", "Wingdings 2", "Wingdings 3" });
+            cbFont.Location = new Point(39, 12);
+            cbFont.Name = "cbFont";
+            cbFont.Size = new Size(151, 28);
+            cbFont.Sorted = true;
+            cbFont.TabIndex = 7;
+            cbFont.Text = "Times New Romen";
+            cbFont.SelectedIndexChanged += cbFont_SelectedIndexChanged;
+            // 
             // EditForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cbFont);
+            Controls.Add(btUnderline);
             Controls.Add(numericUpDown1);
             Controls.Add(btItalic);
             Controls.Add(btNormal);
@@ -109,5 +137,7 @@
         private Button btNormal;
         private Button btItalic;
         private NumericUpDown numericUpDown1;
+        private Button btUnderline;
+        private ComboBox cbFont;
     }
 }
