@@ -68,6 +68,7 @@
             txtRegisterPassword.Name = "txtRegisterPassword";
             txtRegisterPassword.Size = new Size(125, 27);
             txtRegisterPassword.TabIndex = 7;
+            txtRegisterPassword.UseSystemPasswordChar = true;
             // 
             // txtConfirmPassword
             // 
@@ -75,6 +76,7 @@
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.Size = new Size(125, 27);
             txtConfirmPassword.TabIndex = 8;
+            txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // txtRegisterEmail
             // 

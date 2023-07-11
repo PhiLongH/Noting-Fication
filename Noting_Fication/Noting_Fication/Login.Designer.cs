@@ -58,18 +58,19 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(373, 27);
             txtPassword.TabIndex = 3;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
             btnLogin.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnLogin.ForeColor = SystemColors.ActiveCaption;
-            btnLogin.Location = new Point(340, 337);
+            btnLogin.Location = new Point(341, 337);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(265, 79);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
-            btnLogin.Click += btnLogin_Click;
+            btnLogin.Click += btnLogin_Click_1;
             // 
             // label3
             // 
@@ -89,7 +90,7 @@
             lblRegister.TabIndex = 7;
             lblRegister.TabStop = true;
             lblRegister.Text = "Sign up for free";
-            lblRegister.LinkClicked += lblRegister_LinkClicked;
+            lblRegister.LinkClicked += lblRegister_LinkClicked_1;
             // 
             // errorProvider
             // 
@@ -101,11 +102,11 @@
             richTextBox1.BackColor = SystemColors.HighlightText;
             richTextBox1.BorderStyle = BorderStyle.None;
             richTextBox1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            richTextBox1.Location = new Point(68, 224);
+            richTextBox1.Location = new Point(69, 224);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
-            richTextBox1.Size = new Size(140, 23);
+            richTextBox1.Size = new Size(139, 23);
             richTextBox1.TabIndex = 9;
             richTextBox1.Text = "Enter username:";
             // 
@@ -115,7 +116,7 @@
             richTextBox2.BackColor = SystemColors.HighlightText;
             richTextBox2.BorderStyle = BorderStyle.None;
             richTextBox2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            richTextBox2.Location = new Point(68, 264);
+            richTextBox2.Location = new Point(69, 264);
             richTextBox2.Name = "richTextBox2";
             richTextBox2.ReadOnly = true;
             richTextBox2.ScrollBars = RichTextBoxScrollBars.None;
@@ -129,7 +130,7 @@
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Location = new Point(114, 39);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(420, 238);
+            pictureBox1.Size = new Size(421, 237);
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
             // 
@@ -141,7 +142,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(159, 32);
             panel1.Name = "panel1";
-            panel1.Size = new Size(631, 422);
+            panel1.Size = new Size(631, 421);
             panel1.TabIndex = 12;
             // 
             // Login
@@ -158,7 +159,7 @@
             Controls.Add(panel1);
             Name = "Login";
             Text = "Login";
-            Load += Login_Load;
+            Load += Login_Load_1;
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);

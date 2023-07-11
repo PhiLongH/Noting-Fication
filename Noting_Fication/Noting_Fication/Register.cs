@@ -28,7 +28,7 @@ namespace Noting_Fication
             btnRegister.ForeColor = Color.White; // Set the text color of a button
                                                  // Set other colors for your form elements as needed
         }
-        String ConnectionString = "server =LAPTOP-P1F3R3OG\\SQLEXPRESS; database= NotingFication; uid=sa;pwd=12345; TrustServerCertificate=True";
+        String ConnectionString = "server =LAPTOP-P1F3R3OG\\SQLEXPRESS; database= NotingFication_2; uid=sa;pwd=12345; TrustServerCertificate=True";
 
         // This function was born because I eam to lazy to add the auto incrementing into the User table
         private int GenerateNewUserID()
@@ -130,9 +130,9 @@ namespace Noting_Fication
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
-                    string query = "INSERT INTO [User](UserID, UserName, Password, Email) VALUES (@UserID, @Username, @Password, @Email)";
+                    string query = "INSERT INTO [User](UserName, Password, Email) VALUES (@Username, @Password, @Email)";
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@UserID", GenerateNewUserID());
+                    /*command.Parameters.AddWithValue("@UserID", GenerateNewUserID());*/
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
                     command.Parameters.AddWithValue("@Email", email);
