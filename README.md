@@ -1,0 +1,3 @@
+# Noting-Fication
+Noting Fication winform app:
+Usage: creating note for storage, reminder, vv...
