@@ -17,13 +17,13 @@ namespace Noting_Fication
     public partial class List : Form
     {
         private List<Note> notes;
-        private String connectionString = "server =(local); database= NotingFication_2; uid=sa;pwd=12345; TrustServerCertificate=True";
-        private readonly NotingFication_2Context dbContext;
+        private String connectionString = "server =LAPTOP-GFP4TUFC\\HALAM_SE170579; database= NotingFication; uid=sa;pwd=12345; TrustServerCertificate=True";
+        private readonly NotingFicationContext dbContext;
         public List()
         {
             InitializeComponent();
             notes = new List<Note>();
-            dbContext = new NotingFication_2Context();
+            dbContext = new NotingFicationContext();
         }
 
         private void List_Load(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace Noting_Fication
                     {
                         try
                         {
-                            using (var context = new NotingFication_2Context())
+                            using (var context = new NotingFicationContext())
                             {
                                 context.Notes.Remove(selectedNote);
                                 context.SaveChanges();

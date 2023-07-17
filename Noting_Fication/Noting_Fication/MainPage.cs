@@ -1,10 +1,8 @@
-using System.Drawing.Drawing2D;
-using System.Windows.Forms;
-
 namespace Noting_Fication
 {
     public partial class Form1 : Form
     {
+        bool sidebarExpand;
         static int iduser;
         public Form1(int id)
         {
@@ -16,21 +14,49 @@ namespace Noting_Fication
         {
             InitializeComponent();
         }
-        public void show(Form frm)
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            panel2.Controls.Clear();
-            frm.TopLevel = false;
-            frm.Dock = DockStyle.Fill;
-            frm.AutoScroll = true;
-            panel2.Controls.Add(frm);
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Show();
+            timer1.Start();
+        }
+
+        private void sideBartimer_Tick(object sender, EventArgs e)
+        {
+            if (sidebarExpand)
+            {
+                sidebar.Width -= 10;
+                if (sidebar.Width == sidebar.MinimumSize.Width)
+                {
+                    sidebarExpand = false;
+                    timer1.Stop();
+                }
+            }
+            else
+            {
+                sidebar.Width += 10;
+                if (sidebar.Width == sidebar.MaximumSize.Width)
+                {
+                    sidebarExpand = true;
+                    timer1.Stop();
+                }
+            }
+
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTasks_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnTags_Click(object sender, EventArgs e)
         {
             Bins form = new Bins(iduser);
-            show(form);
+            form.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,23 +67,7 @@ namespace Noting_Fication
         private void btnNew_Click_1(object sender, EventArgs e)
         {
             CreateNote form = new CreateNote(iduser);
-            show(form);
-        }
-
-        private void btnList_Click(object sender, EventArgs e)
-        {
-            Categories categories = new Categories();
-            show(categories);
-        }
-
-        private void btnTasks_Click_1(object sender, EventArgs e)
-        {
-            Goal form = new Goal();
             form.Show();
-        }
-
-        private void btnGoals_Click(object sender, EventArgs e)
-        {
 
         }
     }

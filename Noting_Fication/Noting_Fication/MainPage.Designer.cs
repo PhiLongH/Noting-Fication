@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             sidebar = new FlowLayoutPanel();
             MenuContainer = new Panel();
             btnMenu = new Button();
@@ -38,18 +39,13 @@
             btnTasks = new Button();
             TagsContainer = new Panel();
             btnTags = new Button();
-            panel1 = new Panel();
-            btnList = new Button();
-            panel3 = new Panel();
-            btnGoals = new Button();
-            panel2 = new Panel();
+            timer1 = new System.Windows.Forms.Timer(components);
+            flowLayoutPanel1 = new FlowLayoutPanel();
             sidebar.SuspendLayout();
             MenuContainer.SuspendLayout();
             NewContainer.SuspendLayout();
             TasksContainer.SuspendLayout();
             TagsContainer.SuspendLayout();
-            panel1.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // sidebar
@@ -60,8 +56,6 @@
             sidebar.Controls.Add(NewContainer);
             sidebar.Controls.Add(TasksContainer);
             sidebar.Controls.Add(TagsContainer);
-            sidebar.Controls.Add(panel1);
-            sidebar.Controls.Add(panel3);
             sidebar.Dock = DockStyle.Left;
             sidebar.Location = new Point(0, 0);
             sidebar.Margin = new Padding(3, 4, 3, 4);
@@ -77,7 +71,7 @@
             MenuContainer.Location = new Point(3, 4);
             MenuContainer.Margin = new Padding(3, 4, 3, 4);
             MenuContainer.Name = "MenuContainer";
-            MenuContainer.Size = new Size(321, 99);
+            MenuContainer.Size = new Size(321, 98);
             MenuContainer.TabIndex = 1;
             // 
             // btnMenu
@@ -86,26 +80,26 @@
             btnMenu.Location = new Point(0, 4);
             btnMenu.Margin = new Padding(3, 4, 3, 4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(314, 91);
+            btnMenu.Size = new Size(314, 90);
             btnMenu.TabIndex = 0;
             btnMenu.Text = "Menu";
             btnMenu.UseVisualStyleBackColor = true;
             // 
             // SearchContainer
             // 
-            SearchContainer.Location = new Point(3, 111);
+            SearchContainer.Location = new Point(3, 110);
             SearchContainer.Margin = new Padding(3, 4, 3, 4);
             SearchContainer.Name = "SearchContainer";
-            SearchContainer.Size = new Size(321, 99);
+            SearchContainer.Size = new Size(321, 98);
             SearchContainer.TabIndex = 2;
             // 
             // NewContainer
             // 
             NewContainer.Controls.Add(btnNew);
-            NewContainer.Location = new Point(3, 218);
+            NewContainer.Location = new Point(3, 216);
             NewContainer.Margin = new Padding(3, 4, 3, 4);
             NewContainer.Name = "NewContainer";
-            NewContainer.Size = new Size(321, 69);
+            NewContainer.Size = new Size(321, 70);
             NewContainer.TabIndex = 2;
             // 
             // btnNew
@@ -123,23 +117,22 @@
             // TasksContainer
             // 
             TasksContainer.Controls.Add(btnTasks);
-            TasksContainer.Location = new Point(3, 295);
+            TasksContainer.Location = new Point(3, 294);
             TasksContainer.Margin = new Padding(3, 4, 3, 4);
             TasksContainer.Name = "TasksContainer";
-            TasksContainer.Size = new Size(321, 69);
+            TasksContainer.Size = new Size(321, 70);
             TasksContainer.TabIndex = 3;
             // 
             // btnTasks
             // 
             btnTasks.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnTasks.Location = new Point(0, 5);
+            btnTasks.Location = new Point(0, 6);
             btnTasks.Margin = new Padding(3, 4, 3, 4);
             btnTasks.Name = "btnTasks";
             btnTasks.Size = new Size(318, 60);
             btnTasks.TabIndex = 0;
             btnTasks.Text = "Tasks";
             btnTasks.UseVisualStyleBackColor = true;
-            btnTasks.Click += btnTasks_Click_1;
             // 
             // TagsContainer
             // 
@@ -147,13 +140,13 @@
             TagsContainer.Location = new Point(3, 372);
             TagsContainer.Margin = new Padding(3, 4, 3, 4);
             TagsContainer.Name = "TagsContainer";
-            TagsContainer.Size = new Size(321, 69);
+            TagsContainer.Size = new Size(321, 70);
             TagsContainer.TabIndex = 4;
             // 
             // btnTags
             // 
             btnTags.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnTags.Location = new Point(0, 5);
+            btnTags.Location = new Point(0, 6);
             btnTags.Margin = new Padding(3, 4, 3, 4);
             btnTags.Name = "btnTags";
             btnTags.Size = new Size(318, 60);
@@ -162,62 +155,25 @@
             btnTags.UseVisualStyleBackColor = true;
             btnTags.Click += btnTags_Click;
             // 
-            // panel1
+            // timer1
             // 
-            panel1.Controls.Add(btnList);
-            panel1.Location = new Point(3, 449);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(321, 69);
-            panel1.TabIndex = 5;
+            timer1.Interval = 8;
             // 
-            // btnList
+            // flowLayoutPanel1
             // 
-            btnList.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnList.Location = new Point(0, 5);
-            btnList.Margin = new Padding(3, 4, 3, 4);
-            btnList.Name = "btnList";
-            btnList.Size = new Size(318, 60);
-            btnList.TabIndex = 0;
-            btnList.Text = "List";
-            btnList.UseVisualStyleBackColor = true;
-            btnList.Click += btnList_Click;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(btnGoals);
-            panel3.Location = new Point(3, 526);
-            panel3.Margin = new Padding(3, 4, 3, 4);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(321, 69);
-            panel3.TabIndex = 6;
-            // 
-            // btnGoals
-            // 
-            btnGoals.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGoals.Location = new Point(0, 5);
-            btnGoals.Margin = new Padding(3, 4, 3, 4);
-            btnGoals.Name = "btnGoals";
-            btnGoals.Size = new Size(318, 60);
-            btnGoals.TabIndex = 0;
-            btnGoals.Text = "Goals";
-            btnGoals.UseVisualStyleBackColor = true;
-            btnGoals.Click += btnGoals_Click;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(35, 40, 45);
-            panel2.Location = new Point(331, 105);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1099, 660);
-            panel2.TabIndex = 1;
+            flowLayoutPanel1.BackColor = Color.FromArgb(35, 40, 45);
+            flowLayoutPanel1.Location = new Point(394, 76);
+            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(1007, 816);
+            flowLayoutPanel1.TabIndex = 1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1445, 840);
-            Controls.Add(panel2);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(sidebar);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
@@ -228,8 +184,6 @@
             NewContainer.ResumeLayout(false);
             TasksContainer.ResumeLayout(false);
             TagsContainer.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -245,10 +199,7 @@
         private Button btnTasks;
         private Panel TagsContainer;
         private Button btnTags;
-        private Panel panel1;
-        private Button btnList;
-        private Panel panel2;
-        private Panel panel3;
-        private Button btnGoals;
+        private System.Windows.Forms.Timer timer1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
