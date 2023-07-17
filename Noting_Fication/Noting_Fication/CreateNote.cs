@@ -1,4 +1,5 @@
-﻿using Noting_Fication.Models;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Noting_Fication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,6 @@ namespace Noting_Fication
             this.BackColor = AppColors.Lime; // Set the background color of the form
             button1.BackColor = AppColors.Green; // Set the background color of a button
             button1.ForeColor = Color.White; // Set the text color of a button
-            lblCreateNote.ForeColor = AppColors.DarkBlue;
             panel1.BackColor = Color.White;
 
         }
@@ -34,14 +34,21 @@ namespace Noting_Fication
         {
 
         }
-
-
-
+        public void showedit()
+        {
+            EditForm form3 = new EditForm();
+            form3.TopLevel = false;
+            form3.TopMost = true;
+            Form1 form1 = (Form1)Application.OpenForms["Form1"];
+            Panel panel1 = (Panel)form1.Controls["panel2"];
+            panel1.Controls.Clear();
+            panel1.Controls.Add(form3);
+            form3.Show();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             Note n = new Note();
             n.Name = textBox1.Text;
-            n.Content = textBox2.Text;
             n.CategoryId = int.Parse(comboBox1.SelectedValue.ToString());
             n.UserId = iduser;
             n.CreateDate = DateTime.Now;
@@ -68,7 +75,8 @@ namespace Noting_Fication
                 }
             }
             textBox1.Text = String.Empty;
-            textBox2.Text = String.Empty;
+
+            showedit();
         }
 
         private void CreateNote_Load_1(object sender, EventArgs e)
@@ -119,6 +127,20 @@ namespace Noting_Fication
 
         private void label4_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnCreateCate_Click(object sender, EventArgs e)
+        {
+            Category cate  = new Category(); 
+            var context = new NotingFication_2Context(); //
+            string newItem = comboBox1.Text.Trim(); //lay cai nhung gi NHAP^. vao` cai conbobox
+            if (!string.IsNullOrEmpty(newItem) && !comboBox1.Items.Contains(newItem)) // check if the item is unique before adding it to the list.
+            {
+                cate.CategoryName= newItem; // Co ban? la` add gium t cai nay vao database xong show no ra o duoi cai drop down
+                context.Categories.Add(cate); // 
+
+                comboBox1.Text = string.Empty;
+            }
         }
     }
 }

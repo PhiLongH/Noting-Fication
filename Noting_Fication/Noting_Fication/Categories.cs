@@ -20,15 +20,15 @@ namespace Noting_Fication
     public partial class Categories : Form
     {
         private List<String> categories;
-        private String connectionString = "server =LAPTOP-GFP4TUFC\\HALAM_SE170579; database= NotingFication; uid=sa;pwd=12345; TrustServerCertificate=True";
-        private NotingFicationContext dbContext;
+        private String connectionString = "server =(local); database= NotingFication_2; uid=sa;pwd=12345; TrustServerCertificate=True";
+        private NotingFication_2Context dbContext;
         public TextBox? txtNew { get; set; }
 
         public Categories()
         {
             InitializeComponent();
             categories = new List<String>();
-            dbContext = new NotingFicationContext();
+            dbContext = new NotingFication_2Context();
         }
         private void Categories_Load(object sender, EventArgs e)
         {
