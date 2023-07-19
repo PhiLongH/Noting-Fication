@@ -172,6 +172,7 @@
             listCate.Name = "listCate";
             listCate.Size = new Size(202, 284);
             listCate.TabIndex = 3;
+            listCate.AfterCheck += TreeView1_AfterCheck;
             listCate.AfterSelect += treeView1_AfterSelect;
             // 
             // btn_AddCat

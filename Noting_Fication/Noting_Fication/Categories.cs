@@ -54,6 +54,9 @@ namespace Noting_Fication
                 SetupListViewColumns();
                 DisplayNotes(notes);
             }
+        }
+        private void TreeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        {
             if (e.Node.Checked)
             {
                 selectedCategoryNode = e.Node;
@@ -63,6 +66,7 @@ namespace Noting_Fication
                 selectedCategoryNode = null;
             }
         }
+
         private void DisplayNotes(List<Note> notes)
         {
 
@@ -137,15 +141,15 @@ namespace Noting_Fication
             {
                 if (MessageBox.Show("Are you sure you want to delete this category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    // Delete the category from the database
                     string categoryName = selectedCategoryNode.Text;
-                    // Use your ORM framework or database logic to delete the category
-                    // For example, using Entity Framework:
+
                     using (var dbContext = new NotingFication_2Context())
                     {
                         Category categoryToDelete = dbContext.Categories.FirstOrDefault(c => c.CategoryName == categoryName);
                         if (categoryToDelete != null)
                         {
+                            List<Note> notesToDelete = dbContext.Notes.Where(n => n.CategoryId == categoryToDelete.CategoryId).ToList();
+                            dbContext.Notes.RemoveRange(notesToDelete);
                             dbContext.Categories.Remove(categoryToDelete);
                             dbContext.SaveChanges();
                         }
@@ -187,7 +191,7 @@ namespace Noting_Fication
         {
             this.Close();
         }
-        
+
         private string filepath;
         private void Note_Categories_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -199,7 +203,7 @@ namespace Noting_Fication
 
                 using (var context = new NotingFication_2Context())
                 {
-                    var notd = context.Notes.Where(n=>n.Name == nodeName).FirstOrDefault();
+                    var notd = context.Notes.Where(n => n.Name == nodeName).FirstOrDefault();
                     filepath = notd.Content;
                 }
                 showedit();
