@@ -31,6 +31,7 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             Note_Categories = new ListView();
             notecategories_scroll = new VScrollBar();
+            button1 = new Button();
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
@@ -41,7 +42,6 @@
             listCate = new TreeView();
             btn_AddCat = new Button();
             btn_DeleteCat = new Button();
-            button1 = new Button();
             btnExit = new Button();
             flowLayoutPanel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -56,42 +56,58 @@
             flowLayoutPanel2.Controls.Add(Note_Categories);
             flowLayoutPanel2.Controls.Add(notecategories_scroll);
             flowLayoutPanel2.Controls.Add(button1);
-            flowLayoutPanel2.Location = new Point(364, 92);
+            flowLayoutPanel2.Location = new Point(318, 69);
+            flowLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(683, 424);
+            flowLayoutPanel2.Size = new Size(598, 319);
             flowLayoutPanel2.TabIndex = 0;
             // 
             // Note_Categories
             // 
-            Note_Categories.Location = new Point(3, 3);
+            Note_Categories.Location = new Point(3, 2);
+            Note_Categories.Margin = new Padding(3, 2, 3, 2);
             Note_Categories.Name = "Note_Categories";
-            Note_Categories.Size = new Size(647, 419);
+            Note_Categories.Size = new Size(567, 315);
             Note_Categories.TabIndex = 2;
             Note_Categories.UseCompatibleStateImageBehavior = false;
+            Note_Categories.View = View.Details;
             Note_Categories.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            Note_Categories.MouseDoubleClick += Note_Categories_MouseDoubleClick;
             // 
             // notecategories_scroll
             // 
             notecategories_scroll.Cursor = Cursors.Hand;
-            notecategories_scroll.Location = new Point(653, 0);
+            notecategories_scroll.Location = new Point(0, 319);
             notecategories_scroll.Name = "notecategories_scroll";
-            notecategories_scroll.Size = new Size(26, 419);
+            notecategories_scroll.Size = new Size(26, 314);
             notecategories_scroll.TabIndex = 3;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(29, 321);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(82, 22);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(84, 2);
+            panel1.Location = new Point(74, 2);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(963, 84);
+            panel1.Size = new Size(843, 63);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(371, 8);
+            pictureBox1.Location = new Point(325, 6);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(125, 62);
+            pictureBox1.Size = new Size(109, 46);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -99,17 +115,19 @@
             // 
             panel2.BackColor = Color.LightGreen;
             panel2.Location = new Point(-1, 2);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(79, 602);
+            panel2.Size = new Size(69, 452);
             panel2.TabIndex = 0;
             // 
             // Categories_flowlayout
             // 
             Categories_flowlayout.BackColor = Color.Teal;
             Categories_flowlayout.Controls.Add(label1);
-            Categories_flowlayout.Location = new Point(3, 3);
+            Categories_flowlayout.Location = new Point(3, 2);
+            Categories_flowlayout.Margin = new Padding(3, 2, 3, 2);
             Categories_flowlayout.Name = "Categories_flowlayout";
-            Categories_flowlayout.Size = new Size(271, 33);
+            Categories_flowlayout.Size = new Size(237, 25);
             Categories_flowlayout.TabIndex = 1;
             // 
             // label1
@@ -120,7 +138,7 @@
             label1.ForeColor = Color.PaleGreen;
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(164, 31);
+            label1.Size = new Size(132, 25);
             label1.TabIndex = 0;
             label1.Text = "𝙲𝚊𝚝𝚎𝚐𝚘𝚛𝚒𝚎𝚜";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -131,33 +149,38 @@
             flowLayoutPanel1.Controls.Add(Categories_flowlayout);
             flowLayoutPanel1.Controls.Add(Categories_scroll);
             flowLayoutPanel1.Controls.Add(listCate);
-            flowLayoutPanel1.Location = new Point(84, 92);
+            flowLayoutPanel1.Location = new Point(74, 69);
+            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(274, 424);
+            flowLayoutPanel1.Size = new Size(240, 319);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // Categories_scroll
             // 
             Categories_scroll.Cursor = Cursors.Hand;
-            Categories_scroll.Location = new Point(0, 39);
+            Categories_scroll.Location = new Point(0, 29);
             Categories_scroll.Name = "Categories_scroll";
-            Categories_scroll.Size = new Size(26, 383);
+            Categories_scroll.Size = new Size(26, 287);
             Categories_scroll.TabIndex = 2;
             Categories_scroll.TabStop = true;
             // 
             // listCate
             // 
-            listCate.Location = new Point(29, 42);
+            listCate.CheckBoxes = true;
+            listCate.Location = new Point(29, 31);
+            listCate.Margin = new Padding(3, 2, 3, 2);
             listCate.Name = "listCate";
-            listCate.Size = new Size(230, 377);
+            listCate.Size = new Size(202, 284);
             listCate.TabIndex = 3;
+            listCate.AfterSelect += treeView1_AfterSelect;
             // 
             // btn_AddCat
             // 
             btn_AddCat.BackColor = Color.Transparent;
-            btn_AddCat.Location = new Point(285, 519);
+            btn_AddCat.Location = new Point(249, 389);
+            btn_AddCat.Margin = new Padding(3, 2, 3, 2);
             btn_AddCat.Name = "btn_AddCat";
-            btn_AddCat.Size = new Size(60, 29);
+            btn_AddCat.Size = new Size(52, 22);
             btn_AddCat.TabIndex = 1;
             btn_AddCat.Text = "Add";
             btn_AddCat.TextAlign = ContentAlignment.TopCenter;
@@ -166,28 +189,21 @@
             // 
             // btn_DeleteCat
             // 
-            btn_DeleteCat.Location = new Point(212, 519);
+            btn_DeleteCat.Location = new Point(186, 389);
+            btn_DeleteCat.Margin = new Padding(3, 2, 3, 2);
             btn_DeleteCat.Name = "btn_DeleteCat";
-            btn_DeleteCat.Size = new Size(67, 29);
+            btn_DeleteCat.Size = new Size(59, 22);
             btn_DeleteCat.TabIndex = 2;
             btn_DeleteCat.Text = "Delete";
             btn_DeleteCat.UseVisualStyleBackColor = true;
             btn_DeleteCat.Click += btn_DeleteCat_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(3, 428);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // btnExit
             // 
-            btnExit.Location = new Point(973, 522);
+            btnExit.Location = new Point(851, 392);
+            btnExit.Margin = new Padding(3, 2, 3, 2);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(72, 29);
+            btnExit.Size = new Size(63, 22);
             btnExit.TabIndex = 4;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
@@ -195,9 +211,9 @@
             // 
             // Categories
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1059, 603);
+            ClientSize = new Size(927, 452);
             Controls.Add(btnExit);
             Controls.Add(btn_DeleteCat);
             Controls.Add(btn_AddCat);
@@ -205,6 +221,7 @@
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(flowLayoutPanel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Categories";
             Text = "Categories";
             Load += Categories_Load;

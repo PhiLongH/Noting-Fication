@@ -1,13 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.VisualBasic.Logging;
 using Noting_Fication.Models;
+using Noting_Fication.Repo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,15 +24,17 @@ namespace Noting_Fication
 {
     public partial class Categories : Form
     {
-        private List<String> categories;
-        private String connectionString = "server =(local); database= NotingFication_2; uid=sa;pwd=12345; TrustServerCertificate=True";
         private NotingFication_2Context dbContext;
+        public Userservice _userservice;
+        public CateService _cateService;
+        public NoteService _noteService;
+        static int iduser;
         public TextBox? txtNew { get; set; }
 
-        public Categories()
+        public Categories(int id)
         {
+            iduser = id;
             InitializeComponent();
-            categories = new List<String>();
             dbContext = new NotingFication_2Context();
         }
         private void Categories_Load(object sender, EventArgs e)
@@ -36,14 +43,50 @@ namespace Noting_Fication
             btn_AddCat.Enabled = true;
             btn_DeleteCat.Enabled = true;
         }
-
+        private TreeNode selectedCategoryNode;
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node != null && e.Node.Parent != null)
+            if (e.Node != null && e.Node.Tag != null)
             {
-                String selectCategory = e.Node.Text;
-                DisplayNoteForCat(selectCategory);
+                int categoryId = (int)e.Node.Tag;
+                List<Note> notes = dbContext.Notes.Where(n => n.CategoryId == categoryId).ToList();
+
+                SetupListViewColumns();
+                DisplayNotes(notes);
             }
+            if (e.Node.Checked)
+            {
+                selectedCategoryNode = e.Node;
+            }
+            else
+            {
+                selectedCategoryNode = null;
+            }
+        }
+        private void DisplayNotes(List<Note> notes)
+        {
+
+            Note_Categories.Items.Clear();
+
+            foreach (Note note in notes)
+            {
+                ListViewItem listItem = new ListViewItem(note.Name);
+
+                listItem.SubItems.Add(note.Deadline.ToString());
+                listItem.SubItems.Add(note.CreateDate.ToString());
+
+                Note_Categories.Items.Add(listItem);
+            }
+        }
+        private void SetupListViewColumns()
+        {
+            Note_Categories.Columns.Clear();
+
+            Note_Categories.Columns.Add("NoteName");
+
+            Note_Categories.Columns.Add("Deadline");
+
+            Note_Categories.Columns.Add("CreateDate");
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,234 +94,127 @@ namespace Noting_Fication
             if (Note_Categories.SelectedItems.Count > 0)
             {
                 String selectNote = Note_Categories.SelectedItems[0].Text;
-                MessageBox.Show($"You selected the note: {selectNote}", "Note Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
             }
         }
 
         //====================================================================================//
-        private AddCategories addForm;
+        //private AddCategories addForm;
         private void btn_AddCat_Click(object sender, EventArgs e)
         {
-            Categories categoriesForm = new Categories();
-            //AddCategories addForm = new AddCategories(categoriesForm);
-            if (addForm == null || addForm.IsDisposed)
-            {
-                addForm = new AddCategories(categoriesForm);
-                addForm.Owner = this;
-                addForm.FormClosed += Categories_Load;
-            }
+            AddCategories addForm = new AddCategories(iduser);
+            //Categories categoriesForm = new Categories(iduser);     
             addForm.Show();
+            LoadCategories();
             btn_AddCat.Enabled = true;
             btn_DeleteCat.Enabled = true;
         }
 
-        public void AddCategory(string category)
-        {
-            categories.Add(category);
-            SaveCategories();
-
-        }
         public void AddCategoryToListCate(string categoryName)
         {
-            if (!categories.Contains(categoryName))
+            Category caat = new Category();
+            caat.CategoryName = categoryName;
+            var cat = _cateService.GetAll().FirstOrDefault();
+            if (cat == null)
             {
-                categories.Add(categoryName);
+                dbContext.Categories.Add(caat);
                 TreeNode categoryNode = new TreeNode(categoryName);
                 categoryNode.Tag = categoryName;
             }
-            
+            else
+            {
+                MessageBox.Show("Category is already existed!", "Delete task", MessageBoxButtons.OK);
+            }
+
         }
 
         //===================================================================================//
 
         private void btn_DeleteCat_Click(object sender, EventArgs e)
         {
-            if (Note_Categories.SelectedItems.Count > 0)
+            if (selectedCategoryNode != null)
             {
-                string selectedCategory = Note_Categories.SelectedItems[0].Text;
-
-                if (MessageBox.Show($"Are you sure you want to delete the category '{selectedCategory}'?", "Delete Category", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to delete this category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    categories.Remove(selectedCategory);
-                    SaveCategories();
-                    DisplayCategories();
-                }
-            }
-            TreeNode selectedNode = listCate.SelectedNode;
-            if (selectedNode != null)
-            {
-                string selectedCategory = selectedNode.Text;
-
-                if (MessageBox.Show($"Are you sure you want to delete the category '{selectedCategory}'?", "Delete Category", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    // Delete the category from the TreeView
-                    listCate.Nodes.Remove(selectedNode);
-
                     // Delete the category from the database
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    string categoryName = selectedCategoryNode.Text;
+                    // Use your ORM framework or database logic to delete the category
+                    // For example, using Entity Framework:
+                    using (var dbContext = new NotingFication_2Context())
                     {
-                        conn.Open();
-                        string deleteCat = "DELETE FROM Category WHERE CategoryName = @CategoryName;";
-                        using (SqlCommand deleteCmd = new SqlCommand(deleteCat, conn))
+                        Category categoryToDelete = dbContext.Categories.FirstOrDefault(c => c.CategoryName == categoryName);
+                        if (categoryToDelete != null)
                         {
-                            deleteCmd.Parameters.AddWithValue("@CategoryName", selectedCategory);
-                            deleteCmd.ExecuteNonQuery();
+                            dbContext.Categories.Remove(categoryToDelete);
+                            dbContext.SaveChanges();
                         }
                     }
-
-                    MessageBox.Show($"Category '{selectedCategory}' has been deleted successfully.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    selectedCategoryNode.Remove();
+                    selectedCategoryNode = null;
+                    MessageBox.Show("Category deleted successfully.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a category to delete.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
-            {
-                MessageBox.Show("Please select a category to delete.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
         }
+
+
         private void afterSelectCategory(object sender, EventArgs e)
         {
             btn_DeleteCat.Enabled = (listCate.SelectedNode != null);
         }
 
         //===============================================================================//
-        private void SaveCategories()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string deleteCat = "DELETE FROM Category;";
-                    using (SqlCommand deleteCmd = new SqlCommand(deleteCat, conn))
-                    {
-                        deleteCmd.ExecuteNonQuery();
-                    }
-
-                    string insertCat = "INSERT INTO Category (CategoryId, CategoryName) VALUES (@CategoryId, @CategoryName);";
-                    using (SqlCommand insertCmd = new SqlCommand(insertCat, conn))
-                    {
-                        foreach (string category in categories)
-                        {
-                            int categoryId = GenerateCategoryId();
-                            insertCmd.Parameters.AddWithValue("CategoryId", categoryId);
-                            insertCmd.Parameters.AddWithValue("@CategoryName", category);
-                            insertCmd.ExecuteNonQuery();
-                            insertCmd.Parameters.Clear();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("SaveCategories has error: " + ex.Message);
-            }
-        }
-
-        private int GenerateCategoryId()
-        {
-            int maxCategoryId = GetMaxCategoryId(); // Retrieve the maximum existing category ID from the database
-            int newCategoryId = maxCategoryId + 1; // Increment it by 1 to generate a unique category ID
-            return newCategoryId;
-        }
-
-        private int GetMaxCategoryId()
-        {
-            string sql = "SELECT MAX(CategoryId) FROM Category;";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    object result = cmd.ExecuteScalar();
-                    if (result != DBNull.Value && result != null)
-                    {
-                        int maxId = Convert.ToInt32(result);
-                        return maxId;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-            }
-        }
-        //===============================================================================//
         private void LoadCategories()
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    string sql = "SELECT CategoryName FROM Category";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        conn.Open();
-                        SqlDataReader r = cmd.ExecuteReader();
-                        List<string> catNames = new List<string>(); 
-                        categories.Clear();
-                        while (r.Read())
-                        {
-                            catNames.Add(r.GetString(0));
-                        }
-                        categories = catNames;
-                        
-                    }
-                }
-                DisplayCategories();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("LoadCategories has error: " + ex.Message);
-            }
-        }
+            List<Category> categories = dbContext.Categories.ToList();
 
-        private void DisplayCategories()
-        {
-            foreach (String category in categories)
-            {
-                TreeNode catNode = listCate.Nodes.Add(category);
+            listCate.Nodes.Clear();
 
+            foreach (Category category in categories)
+            {
+                TreeNode node = new TreeNode(category.CategoryName);
+                node.Tag = category.CategoryId;
+                listCate.Nodes.Add(node);
             }
 
         }
-        private void DisplayNoteForCat(String category)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string sql = "SELECT Name FROM Note WHERE Category = @Category;";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Category", category);
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        while (reader.Read())
-                        {
-                            string note = reader.GetString(0);
-                            ListViewItem item = new ListViewItem(note);
-                            Note_Categories.Items.Add(item);
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Display Note For Categories has error: " + ex.Message);
-            }
-        }
-        //private void ClearCategoryField()
-        //{
-        //    txtNew.Text = string.Empty;
-        //}
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        
+        private string filepath;
+        private void Note_Categories_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewHitTestInfo hitTest = Note_Categories.HitTest(e.Location);
+            if (Note_Categories.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = Note_Categories.SelectedItems[0];
+                string nodeName = selectedItem.SubItems[0].Text;
+
+                using (var context = new NotingFication_2Context())
+                {
+                    var notd = context.Notes.Where(n=>n.Name == nodeName).FirstOrDefault();
+                    filepath = notd.Content;
+                }
+                showedit();
+            }
+        }
+        public void showedit()
+        {
+            EditForm form3 = new EditForm(iduser, filepath);
+            form3.TopLevel = false;
+            form3.TopMost = true;
+            Form1 form1 = (Form1)Application.OpenForms["Form1"];
+            Panel panel1 = (Panel)form1.Controls["panel2"];
+            panel1.Controls.Clear();
+            panel1.Controls.Add(form3);
+            form3.Show();
         }
         //===================================================================================
 

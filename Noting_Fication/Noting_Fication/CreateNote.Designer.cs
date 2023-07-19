@@ -36,7 +36,6 @@
             dateTimePicker1 = new DateTimePicker();
             button1 = new Button();
             panel1 = new Panel();
-            btnCreateCate = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -113,7 +112,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnCreateCate);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(label4);
@@ -126,16 +124,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(484, 215);
             panel1.TabIndex = 11;
-            // 
-            // btnCreateCate
-            // 
-            btnCreateCate.Location = new Point(409, 55);
-            btnCreateCate.Name = "btnCreateCate";
-            btnCreateCate.Size = new Size(75, 23);
-            btnCreateCate.TabIndex = 10;
-            btnCreateCate.Text = "Add";
-            btnCreateCate.UseVisualStyleBackColor = true;
-            btnCreateCate.Click += btnCreateCate_Click;
             // 
             // CreateNote
             // 
@@ -162,6 +150,5 @@
         private DateTimePicker dateTimePicker1;
         private Button button1;
         private Panel panel1;
-        private Button btnCreateCate;
     }
 }

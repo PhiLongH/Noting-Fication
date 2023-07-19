@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Noting_Fication
     public partial class CreateNote : Form
     {
         static int iduser;
+        static String filepath;
         public CreateNote(int id)
         {
             iduser = id;
@@ -36,7 +38,7 @@ namespace Noting_Fication
         }
         public void showedit()
         {
-            EditForm form3 = new EditForm();
+            EditForm form3 = new EditForm(iduser, filepath);
             form3.TopLevel = false;
             form3.TopMost = true;
             Form1 form1 = (Form1)Application.OpenForms["Form1"];
@@ -47,13 +49,48 @@ namespace Noting_Fication
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            string text = comboBox1.Text;
+            int id = 0;
+            using (var context = new NotingFication_2Context())
+            {
+                Category c1 = context.Categories.FirstOrDefault(x => x.CategoryName == text);
+                if (c1 == null)
+                {
+                    Category c2 = new Category();
+                    c2.CategoryName = text;
+                    context.Categories.Add(c2);
+                    context.SaveChanges();
+                    id = c2.CategoryId;
+                }
+                else
+                {
+                    id = c1.CategoryId;
+                }
+            }
             Note n = new Note();
             n.Name = textBox1.Text;
-            n.CategoryId = int.Parse(comboBox1.SelectedValue.ToString());
+            n.CategoryId = id;
             n.UserId = iduser;
             n.CreateDate = DateTime.Now;
             n.Status = true;
             n.Deadline = dateTimePicker1.Value;
+            n.Content = $@"..\..\save\{n.Name}.rtf";
+            string filename = $"{n.Name}.rtf";
+            string folderPath = $@"..\..\save\";
+
+            Directory.CreateDirectory(folderPath);
+
+            filepath = Path.Combine(folderPath, filename);
+            int counter = 1;
+
+            while (File.Exists(filepath))
+            {
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filename);
+                string fileExtension = Path.GetExtension(filename);
+                string newFileName = $"{fileNameWithoutExtension} ({counter}){fileExtension}";
+                filepath = Path.Combine(folderPath, newFileName);
+                counter++;
+            }
             if (n.Name == "" || n.Content == "")
             {
                 MessageBox.Show("Ban can nhap day du thong tin");
@@ -66,6 +103,10 @@ namespace Noting_Fication
                     {
                         context.Notes.Add(n);
                         context.SaveChanges();
+                    }
+                    using (File.Create(filepath))
+                    {
+                        // File is created with no content
                     }
                     MessageBox.Show("Add thanh cong Note!");
                 }
@@ -129,18 +170,5 @@ namespace Noting_Fication
         {
         }
 
-        private void btnCreateCate_Click(object sender, EventArgs e)
-        {
-            Category cate  = new Category(); 
-            var context = new NotingFication_2Context(); //
-            string newItem = comboBox1.Text.Trim(); //lay cai nhung gi NHAP^. vao` cai conbobox
-            if (!string.IsNullOrEmpty(newItem) && !comboBox1.Items.Contains(newItem)) // check if the item is unique before adding it to the list.
-            {
-                cate.CategoryName= newItem; // Co ban? la` add gium t cai nay vao database xong show no ra o duoi cai drop down
-                context.Categories.Add(cate); // 
-
-                comboBox1.Text = string.Empty;
-            }
-        }
     }
 }

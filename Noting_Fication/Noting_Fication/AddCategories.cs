@@ -1,8 +1,12 @@
-﻿using Noting_Fication;
+﻿using Microsoft.EntityFrameworkCore;
+using Noting_Fication;
+using Noting_Fication.Models;
+using Noting_Fication.Repo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,43 +18,48 @@ namespace Noting_Fication
     public partial class AddCategories : Form
     {
         private Categories categoriesForm;
-        public string EnterCat { get { return txtNew.Text.Trim(); } }
-        public AddCategories(Categories categoriesForm)
+        static int iduser;
+        public AddCategories(int id)
         {
+            iduser = id;
             InitializeComponent();
-            this.categoriesForm = categoriesForm;
-            Wire();
+
+            //Wire();
         }
-        private void Wire()
-        {
-            categoriesForm.txtNew = txtNew;
-            btnADD.Click += btnAdd_Click_1;
-        }
+        //private void Wire()
+        //{
+        //    categoriesForm.txtNew = txtNew;
+        //    btnADD.Click += btnAdd_Click_1;
+        //}
         private void btnAdd_Click_1(object? sender, EventArgs e)
         {
-            string newCategory = txtNew.Text.Trim();
+           
+        }
 
-            if (!string.IsNullOrEmpty(newCategory))
+        private void btnADD_Click(object sender, EventArgs e)
+        { 
+            string newCategoryName = txtNew.Text.ToString();
+
+            try
             {
-                categoriesForm.AddCategory(newCategory);
-                categoriesForm.AddCategoryToListCate(newCategory);
-
-                // Save the category to the database (assuming you have a method for saving categories)
-
-                MessageBox.Show("New category saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Close(); // Close the AddCategories form
+                using (var context = new NotingFication_2Context())
+                {
+                    Category cat = new Category();
+                    cat.CategoryName = newCategoryName;
+                    context.Categories.Add(cat);
+                    context.SaveChanges();
+                }
+                // Category added successfully
+                MessageBox.Show("Category added successfully.");
+                Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please enter a valid category name.", "Invalid Category", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Handle any exceptions that occur during the database operation
+                MessageBox.Show("An error occurred: " + ex.Message);
             }
-            //String new_Category = txtNew.Text;
-            //categoriesForm.AddCategory(new_Category);
-            ////MessageBox.Show($"New category: {new_Category}");
-            ////categoriesForm.AddCategoryToListCate(new_Category);
+
         }
     }
-
 }
 

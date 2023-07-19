@@ -33,15 +33,15 @@
             btnMenu = new Button();
             SearchContainer = new Panel();
             NewContainer = new Panel();
-            btnNew = new Button();
-            TasksContainer = new Panel();
-            btnTasks = new Button();
-            TagsContainer = new Panel();
-            btnTags = new Button();
-            panel1 = new Panel();
-            btnList = new Button();
-            panel3 = new Panel();
             btnGoals = new Button();
+            TasksContainer = new Panel();
+            btnNew = new Button();
+            TagsContainer = new Panel();
+            btnTasks = new Button();
+            panel1 = new Panel();
+            btnTags = new Button();
+            panel3 = new Panel();
+            btnList = new Button();
             panel2 = new Panel();
             sidebar.SuspendLayout();
             MenuContainer.SuspendLayout();
@@ -64,162 +64,148 @@
             sidebar.Controls.Add(panel3);
             sidebar.Dock = DockStyle.Left;
             sidebar.Location = new Point(0, 0);
-            sidebar.Margin = new Padding(3, 4, 3, 4);
-            sidebar.MaximumSize = new Size(325, 908);
-            sidebar.MinimumSize = new Size(65, 908);
+            sidebar.MaximumSize = new Size(284, 681);
+            sidebar.MinimumSize = new Size(57, 681);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(325, 908);
+            sidebar.Size = new Size(284, 681);
             sidebar.TabIndex = 0;
             // 
             // MenuContainer
             // 
             MenuContainer.Controls.Add(btnMenu);
-            MenuContainer.Location = new Point(3, 4);
-            MenuContainer.Margin = new Padding(3, 4, 3, 4);
+            MenuContainer.Location = new Point(3, 3);
             MenuContainer.Name = "MenuContainer";
-            MenuContainer.Size = new Size(321, 99);
+            MenuContainer.Size = new Size(281, 74);
             MenuContainer.TabIndex = 1;
             // 
             // btnMenu
             // 
             btnMenu.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMenu.Location = new Point(0, 4);
-            btnMenu.Margin = new Padding(3, 4, 3, 4);
+            btnMenu.Location = new Point(0, 3);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(314, 91);
+            btnMenu.Size = new Size(275, 68);
             btnMenu.TabIndex = 0;
             btnMenu.Text = "Menu";
             btnMenu.UseVisualStyleBackColor = true;
             // 
             // SearchContainer
             // 
-            SearchContainer.Location = new Point(3, 111);
-            SearchContainer.Margin = new Padding(3, 4, 3, 4);
+            SearchContainer.Location = new Point(3, 83);
             SearchContainer.Name = "SearchContainer";
-            SearchContainer.Size = new Size(321, 99);
+            SearchContainer.Size = new Size(281, 74);
             SearchContainer.TabIndex = 2;
             // 
             // NewContainer
             // 
-            NewContainer.Controls.Add(btnNew);
-            NewContainer.Location = new Point(3, 218);
-            NewContainer.Margin = new Padding(3, 4, 3, 4);
+            NewContainer.Controls.Add(btnGoals);
+            NewContainer.Location = new Point(3, 163);
             NewContainer.Name = "NewContainer";
-            NewContainer.Size = new Size(321, 69);
+            NewContainer.Size = new Size(281, 52);
             NewContainer.TabIndex = 2;
+            // 
+            // btnGoals
+            // 
+            btnGoals.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGoals.Location = new Point(3, 3);
+            btnGoals.Name = "btnGoals";
+            btnGoals.Size = new Size(278, 45);
+            btnGoals.TabIndex = 0;
+            btnGoals.Text = "Open";
+            btnGoals.UseVisualStyleBackColor = true;
+            btnGoals.Click += btnGoals_Click;
+            // 
+            // TasksContainer
+            // 
+            TasksContainer.Controls.Add(btnNew);
+            TasksContainer.Location = new Point(3, 221);
+            TasksContainer.Name = "TasksContainer";
+            TasksContainer.Size = new Size(281, 52);
+            TasksContainer.TabIndex = 3;
             // 
             // btnNew
             // 
             btnNew.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnNew.Location = new Point(0, 4);
-            btnNew.Margin = new Padding(3, 4, 3, 4);
+            btnNew.Location = new Point(3, 4);
             btnNew.Name = "btnNew";
-            btnNew.Size = new Size(318, 60);
+            btnNew.Size = new Size(278, 45);
             btnNew.TabIndex = 0;
             btnNew.Text = "New";
             btnNew.UseVisualStyleBackColor = true;
             btnNew.Click += btnNew_Click_1;
             // 
-            // TasksContainer
+            // TagsContainer
             // 
-            TasksContainer.Controls.Add(btnTasks);
-            TasksContainer.Location = new Point(3, 295);
-            TasksContainer.Margin = new Padding(3, 4, 3, 4);
-            TasksContainer.Name = "TasksContainer";
-            TasksContainer.Size = new Size(321, 69);
-            TasksContainer.TabIndex = 3;
+            TagsContainer.Controls.Add(btnTasks);
+            TagsContainer.Location = new Point(3, 279);
+            TagsContainer.Name = "TagsContainer";
+            TagsContainer.Size = new Size(281, 52);
+            TagsContainer.TabIndex = 4;
             // 
             // btnTasks
             // 
             btnTasks.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnTasks.Location = new Point(0, 5);
-            btnTasks.Margin = new Padding(3, 4, 3, 4);
+            btnTasks.Location = new Point(3, 4);
             btnTasks.Name = "btnTasks";
-            btnTasks.Size = new Size(318, 60);
+            btnTasks.Size = new Size(278, 45);
             btnTasks.TabIndex = 0;
             btnTasks.Text = "Tasks";
             btnTasks.UseVisualStyleBackColor = true;
             btnTasks.Click += btnTasks_Click_1;
             // 
-            // TagsContainer
+            // panel1
             // 
-            TagsContainer.Controls.Add(btnTags);
-            TagsContainer.Location = new Point(3, 372);
-            TagsContainer.Margin = new Padding(3, 4, 3, 4);
-            TagsContainer.Name = "TagsContainer";
-            TagsContainer.Size = new Size(321, 69);
-            TagsContainer.TabIndex = 4;
+            panel1.Controls.Add(btnTags);
+            panel1.Location = new Point(3, 337);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(281, 52);
+            panel1.TabIndex = 5;
             // 
             // btnTags
             // 
             btnTags.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnTags.Location = new Point(0, 5);
-            btnTags.Margin = new Padding(3, 4, 3, 4);
+            btnTags.Location = new Point(3, 4);
             btnTags.Name = "btnTags";
-            btnTags.Size = new Size(318, 60);
+            btnTags.Size = new Size(278, 45);
             btnTags.TabIndex = 0;
             btnTags.Text = "Bin";
             btnTags.UseVisualStyleBackColor = true;
             btnTags.Click += btnTags_Click;
             // 
-            // panel1
+            // panel3
             // 
-            panel1.Controls.Add(btnList);
-            panel1.Location = new Point(3, 449);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(321, 69);
-            panel1.TabIndex = 5;
+            panel3.Controls.Add(btnList);
+            panel3.Location = new Point(3, 395);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(281, 52);
+            panel3.TabIndex = 6;
             // 
             // btnList
             // 
             btnList.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnList.Location = new Point(0, 5);
-            btnList.Margin = new Padding(3, 4, 3, 4);
+            btnList.Location = new Point(3, 4);
             btnList.Name = "btnList";
-            btnList.Size = new Size(318, 60);
+            btnList.Size = new Size(278, 45);
             btnList.TabIndex = 0;
             btnList.Text = "List";
             btnList.UseVisualStyleBackColor = true;
             btnList.Click += btnList_Click;
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(btnGoals);
-            panel3.Location = new Point(3, 526);
-            panel3.Margin = new Padding(3, 4, 3, 4);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(321, 69);
-            panel3.TabIndex = 6;
-            // 
-            // btnGoals
-            // 
-            btnGoals.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGoals.Location = new Point(0, 5);
-            btnGoals.Margin = new Padding(3, 4, 3, 4);
-            btnGoals.Name = "btnGoals";
-            btnGoals.Size = new Size(318, 60);
-            btnGoals.TabIndex = 0;
-            btnGoals.Text = "Test Editform";
-            btnGoals.UseVisualStyleBackColor = true;
-            btnGoals.Click += btnGoals_Click;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(35, 40, 45);
-            panel2.Location = new Point(331, 105);
+            panel2.Location = new Point(290, 25);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1099, 660);
+            panel2.Size = new Size(962, 577);
             panel2.TabIndex = 1;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1445, 840);
+            ClientSize = new Size(1264, 630);
             Controls.Add(panel2);
             Controls.Add(sidebar);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;

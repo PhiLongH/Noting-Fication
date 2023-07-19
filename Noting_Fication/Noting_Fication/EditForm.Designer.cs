@@ -107,7 +107,7 @@ namespace Noting_Fication
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(172, 19);
+            numericUpDown1.Location = new Point(177, 6);
             numericUpDown1.Margin = new Padding(3, 2, 3, 2);
             numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
@@ -133,7 +133,7 @@ namespace Noting_Fication
             cbFont.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbFont.FormattingEnabled = true;
             cbFont.Items.AddRange(new object[] { "Arial", "Avenir", "Baskerville", "Bodoni", "Book Antiqua", "Bookman Old Style", "Brush Script MT", "Calibri", "Calibri", "Cambria", "Candara", "Century Gothic", "Century Schoolbook", "Clarendon", "Comic Sans MS", "Consolas", "Copperplate Gothic", "Courier", "Courier New", "Didot", "Edwardian Script ITC", "Engravers MT", "Eurostile", "Felix Titling", "Forte", "Franklin Gothic", "Franklin Gothic Medium", "Frutiger", "Futura", "Garamond", "Georgia", "Gill Sans", "Gill Sans", "Gotham", "Gotham", "Goudy Stout", "Helvetica", "Impact", "Impact", "ITC Avant Garde Gothic", "Lucida Console", "Lucida Handwriting", "Lucida Handwriting", "Magneto", "Marlett", "Microsoft Sans Serif", "Monotype Corsiva", "Myriad", "Myriad Pro", "Neutraface", "Optima", "Palatino Linotype", "Proxima Nova", "Rockwell", "Segoe Print", "Segoe Script", "Segoe UI", "Symbol", "Tahoma", "Times New Roman", "Times New Roman", "Trade Gothic", "Trebuchet MS", "Univers", "Verdana", "Verdana", "Webdings", "Wingdings", "Wingdings 2", "Wingdings 3" });
-            cbFont.Location = new Point(23, 18);
+            cbFont.Location = new Point(24, 6);
             cbFont.Margin = new Padding(3, 2, 3, 2);
             cbFont.Name = "cbFont";
             cbFont.Size = new Size(133, 23);

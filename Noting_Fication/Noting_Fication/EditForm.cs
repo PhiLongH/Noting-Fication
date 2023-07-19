@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Noting_Fication.Models;
+using Noting_Fication.Repo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,15 +19,31 @@ namespace Noting_Fication
     {
         private List<Color> colorOptions;
         Stack<string> undoList = new Stack<string>();
-        public EditForm()
+        public NoteService _noteservice;
+        public Userservice _userservice;
+        public CateService _cateservice;
+        static int iduser;
+        private string filePath;
+        public EditForm(int id, String filePath)
         {
+            iduser = id;
             InitializeComponent();
+            this.filePath = filePath;
             Loadfirst();
-
+            LoadFileContent(filePath);
         }
         void Loadfirst()
         {
             Font newFont = new Font("Times New Romance", (int)numericUpDown1.Value, FontStyle.Regular);
+        }
+
+        public string GetRichTextBoxContent()
+        {
+            string tempFilePath = Path.GetTempFileName(); // Create a temporary file
+            rtxbContent.SaveFile(tempFilePath, RichTextBoxStreamType.RichText); // Save the content to the temporary file
+            string content = File.ReadAllText(tempFilePath); // Read the content from the temporary file
+            File.Delete(tempFilePath); // Delete the temporary file
+            return content;
         }
 
         private void EditForm_Load(object sender, EventArgs e)
@@ -237,7 +257,18 @@ namespace Noting_Fication
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            SaveFileContent();
+            MessageBox.Show("Changes saved successfully!");
+        }
+        private void LoadFileContent(String path)
+        {
+            rtxbContent.LoadFile(path, RichTextBoxStreamType.RichText);
 
+        }
+
+        private void SaveFileContent()
+        {
+            rtxbContent.SaveFile(filePath);
         }
     }
 }
