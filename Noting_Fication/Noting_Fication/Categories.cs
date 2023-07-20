@@ -50,7 +50,7 @@ namespace Noting_Fication
             if (e.Node != null && e.Node.Tag != null)
             {
                 int categoryId = (int)e.Node.Tag;
-                List<Note> notes = dbContext.Notes.Where(n => n.CategoryId == categoryId).ToList();
+                List<Note> notes = dbContext.Notes.Where(n => n.CategoryId == categoryId && n.Status== true).ToList();
 
                 SetupListViewColumns();
                 DisplayNotes(notes);
