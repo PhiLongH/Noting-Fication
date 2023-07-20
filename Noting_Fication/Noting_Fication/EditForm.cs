@@ -270,5 +270,13 @@ namespace Noting_Fication
         {
             rtxbContent.SaveFile(filePath);
         }
+
+        private void btnSetgoal_Click(object sender, EventArgs e)
+        {
+            string name = Path.GetFileNameWithoutExtension(filePath);
+
+            Goal goal = new Goal(name);
+            goal.Show();
+        }
     }
 }

@@ -57,6 +57,7 @@ namespace Noting_Fication
             btnHighlight = new Button();
             btnBullet = new Button();
             btnSave = new Button();
+            btnSetgoal = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -375,12 +376,23 @@ namespace Noting_Fication
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // btnSetgoal
+            // 
+            btnSetgoal.Location = new Point(52, 36);
+            btnSetgoal.Name = "btnSetgoal";
+            btnSetgoal.Size = new Size(75, 23);
+            btnSetgoal.TabIndex = 29;
+            btnSetgoal.Text = "Set Goals";
+            btnSetgoal.UseVisualStyleBackColor = true;
+            btnSetgoal.Click += btnSetgoal_Click;
+            // 
             // EditForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 40, 45);
             ClientSize = new Size(943, 435);
+            Controls.Add(btnSetgoal);
             Controls.Add(btnSave);
             Controls.Add(btnBullet);
             Controls.Add(btnHighlight);
@@ -434,5 +446,6 @@ namespace Noting_Fication
         private Button btnHighlight;
         private Button btnBullet;
         private Button btnSave;
+        private Button btnSetgoal;
     }
 }

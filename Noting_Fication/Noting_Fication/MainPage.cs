@@ -51,11 +51,6 @@ namespace Noting_Fication
             show(categories);
         }
 
-        private void btnTasks_Click_1(object sender, EventArgs e)
-        {
-            Goal form = new Goal();
-            form.Show();
-        }
         public void LoadMyFile()
         {
             // Create an OpenFileDialog to request a file to open.

@@ -43,6 +43,7 @@
             btn_AddCat = new Button();
             btn_DeleteCat = new Button();
             btnExit = new Button();
+            btnDeleteNote = new Button();
             flowLayoutPanel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -210,11 +211,23 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
+            // btnDeleteNote
+            // 
+            btnDeleteNote.Location = new Point(786, 392);
+            btnDeleteNote.Margin = new Padding(3, 2, 3, 2);
+            btnDeleteNote.Name = "btnDeleteNote";
+            btnDeleteNote.Size = new Size(59, 22);
+            btnDeleteNote.TabIndex = 5;
+            btnDeleteNote.Text = "Delete";
+            btnDeleteNote.UseVisualStyleBackColor = true;
+            btnDeleteNote.Click += btnDeleteNote_Click;
+            // 
             // Categories
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(927, 452);
+            Controls.Add(btnDeleteNote);
             Controls.Add(btnExit);
             Controls.Add(btn_DeleteCat);
             Controls.Add(btn_AddCat);
@@ -251,5 +264,6 @@
         private Button btn_DeleteCat;
         private Button button1;
         private Button btnExit;
+        private Button btnDeleteNote;
     }
 }

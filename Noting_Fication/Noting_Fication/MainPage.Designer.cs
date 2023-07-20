@@ -36,8 +36,6 @@
             btnGoals = new Button();
             TasksContainer = new Panel();
             btnNew = new Button();
-            TagsContainer = new Panel();
-            btnTasks = new Button();
             panel1 = new Panel();
             btnTags = new Button();
             panel3 = new Panel();
@@ -47,7 +45,6 @@
             MenuContainer.SuspendLayout();
             NewContainer.SuspendLayout();
             TasksContainer.SuspendLayout();
-            TagsContainer.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -59,7 +56,6 @@
             sidebar.Controls.Add(SearchContainer);
             sidebar.Controls.Add(NewContainer);
             sidebar.Controls.Add(TasksContainer);
-            sidebar.Controls.Add(TagsContainer);
             sidebar.Controls.Add(panel1);
             sidebar.Controls.Add(panel3);
             sidebar.Dock = DockStyle.Left;
@@ -133,29 +129,10 @@
             btnNew.UseVisualStyleBackColor = true;
             btnNew.Click += btnNew_Click_1;
             // 
-            // TagsContainer
-            // 
-            TagsContainer.Controls.Add(btnTasks);
-            TagsContainer.Location = new Point(3, 279);
-            TagsContainer.Name = "TagsContainer";
-            TagsContainer.Size = new Size(281, 52);
-            TagsContainer.TabIndex = 4;
-            // 
-            // btnTasks
-            // 
-            btnTasks.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            btnTasks.Location = new Point(3, 4);
-            btnTasks.Name = "btnTasks";
-            btnTasks.Size = new Size(278, 45);
-            btnTasks.TabIndex = 0;
-            btnTasks.Text = "Tasks";
-            btnTasks.UseVisualStyleBackColor = true;
-            btnTasks.Click += btnTasks_Click_1;
-            // 
             // panel1
             // 
             panel1.Controls.Add(btnTags);
-            panel1.Location = new Point(3, 337);
+            panel1.Location = new Point(3, 279);
             panel1.Name = "panel1";
             panel1.Size = new Size(281, 52);
             panel1.TabIndex = 5;
@@ -174,7 +151,7 @@
             // panel3
             // 
             panel3.Controls.Add(btnList);
-            panel3.Location = new Point(3, 395);
+            panel3.Location = new Point(3, 337);
             panel3.Name = "panel3";
             panel3.Size = new Size(281, 52);
             panel3.TabIndex = 6;
@@ -213,7 +190,6 @@
             MenuContainer.ResumeLayout(false);
             NewContainer.ResumeLayout(false);
             TasksContainer.ResumeLayout(false);
-            TagsContainer.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ResumeLayout(false);
@@ -228,8 +204,6 @@
         private Panel NewContainer;
         private Button btnNew;
         private Panel TasksContainer;
-        private Button btnTasks;
-        private Panel TagsContainer;
         private Button btnTags;
         private Panel panel1;
         private Button btnList;

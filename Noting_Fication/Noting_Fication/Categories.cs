@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
@@ -95,12 +96,30 @@ namespace Noting_Fication
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Note_Categories.SelectedItems.Count > 0)
-            {
-                String selectNote = Note_Categories.SelectedItems[0].Text;
+            //if (Note_Categories.SelectedItems.Count > 0)
+            //{
+            //    String selectNote = Note_Categories.SelectedItems[0].Text;
+            //    if (Note_Categories.SelectedItems.Count > 0)
+            //    {
+            //        if (Note_Categories.SelectedItems.Count > 0)
+            //        {
+            //            ListViewItem selectedItem = Note_Categories.SelectedItems[0];
+            //            string noteName = selectedItem.SubItems[0].Text;
+            //            string deadline = selectedItem.SubItems[1].Text;
+            //            string createDate = selectedItem.SubItems[2].Text;
 
+            //            // Find the Note object in the data source (noteList) that matches the selected item's information
+            //            using (var dbContext = new NotingFication_2Context())
+            //            {
+            //                Note selectedNote = dbContext.Notes.FirstOrDefault(note => note.Name == noteName && note.Deadline.ToString() == deadline && note.CreateDate.ToString() == createDate);
+            //                selectedNote.Status = false;
+            //            }
 
-            }
+            //        }
+
+            //    }
+
+            //}
         }
 
         //====================================================================================//
@@ -139,7 +158,7 @@ namespace Noting_Fication
         {
             if (selectedCategoryNode != null)
             {
-                if (MessageBox.Show("Are you sure you want to delete this category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to delete this ?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string categoryName = selectedCategoryNode.Text;
 
@@ -152,15 +171,16 @@ namespace Noting_Fication
                             dbContext.Notes.RemoveRange(notesToDelete);
                             dbContext.Categories.Remove(categoryToDelete);
                             dbContext.SaveChanges();
+
                         }
                     }
                     selectedCategoryNode.Remove();
                     selectedCategoryNode = null;
-                    MessageBox.Show("Category deleted successfully.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("delete successfully.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Please select a category to delete.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please select to delete.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -219,6 +239,39 @@ namespace Noting_Fication
             panel1.Controls.Clear();
             panel1.Controls.Add(form3);
             form3.Show();
+        }
+
+        private void btnDeleteNote_Click(object sender, EventArgs e)
+        {
+            if (Note_Categories.SelectedItems.Count > 0)
+            {
+                // Get the selected ListViewItem
+                ListViewItem selectedItem = Note_Categories.SelectedItems[0];
+
+                // Get the note name from the first sub-item (column 0)
+                string noteName = selectedItem.SubItems[0].Text;
+
+                // Find the note object in the data source (noteList) based on the note name
+                using (var dbContext = new NotingFication_2Context())
+                {
+                    Note noteToDelete = dbContext.Notes.FirstOrDefault(note => note.Name == noteName);
+                    if (noteToDelete != null)
+                    {
+                        // Remove the note from the data source (noteList)
+                        //Note_Categories.Remove(noteToDelete);
+                        noteToDelete.Status = false;
+                        dbContext.SaveChanges();
+                        // Remove the selected ListViewItem from the ListView
+                        Note_Categories.Items.Remove(selectedItem);
+
+                        MessageBox.Show($"Note '{noteName}' has been deleted successfully.", "Delete Note", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }               
+            }
+            else
+            {
+                MessageBox.Show("Please select a note to delete.", "Delete Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         //===================================================================================
 
